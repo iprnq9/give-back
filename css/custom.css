@@ -1,0 +1,10 @@
+@media only screen and (min-width: 992px) {
+    .nav-wrapper {
+        margin-right: 20%;
+        margin-left: 20%;
+    }
+}
+
+.parallax-container {
+    height: 200px;
+}
