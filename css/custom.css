@@ -1,10 +1,100 @@
+@font-face {
+    font-family: Scoreboard;
+    src: url(../fonts/scoreboard.ttf);
+}
+
 @media only screen and (min-width: 992px) {
     .nav-wrapper {
-        margin-right: 20%;
-        margin-left: 20%;
+        margin-right: 17%;
+        margin-left: 17%;
     }
 }
 
-.parallax-container {
-    height: 200px;
+@media only screen and (max-width: 992px) {
+    .profile-name, .profile-about, .profile-skills {
+        text-align: center;
+    }
+}
+
+.profile-picture {
+    align: middle;
+}
+
+.profile-name {
+    font-size: 24pt;
+    font-family: "Roboto Slab";
+    display: block;
+}
+
+.profile-about {
+    font-size: 18pt;
+    font-family: Roboto;
+    display: block;
+}
+
+.profile-skills {
+    display: block;
+    margin-top: 20px;
+}
+
+.profile-score-box .card-panel {
+    height: auto;
+    text-align: center;
+    color: white;
+    font-size: 30pt;
+}
+
+.profile-score-box .card-panel .profile-score-points {
+    font-size: 50pt;
+    font-family: Scoreboard;
+    display: block;
+}
+
+.profile-history, .profile-ideas {
+    font-size: 32pt;
+    font-family: Roboto Slab, sans-serif;
+    padding: 10px;
+}
+
+.object-title {
+    font-size: 20pt;
+    font-family: Roboto Slab;
+    margin-top: 10px;
+}
+
+.object-details {
+    font-size: 10pt;
+    display: ;
+}
+
+.object-author {
+    font-size: 12pt;
+    font-family: "Roboto";
+    color: grey;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.object-hr {
+    width: 30%;
+    border: solid black 1px;
+}
+
+.object-description {
+    font-size: 14pt;
+    font-family: Roboto Slab;
+}
+
+.object-button {
+    font-size: 12pt;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.object-tags {
+
+}
+
+.col {
+    padding: 15px;
 }

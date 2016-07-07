@@ -23,10 +23,6 @@
 //ini_set('html_errors', 'On');
 include 'header.php'; ?>
 
-<div class="parallax-container">
-    <div class="parallax"><img src="images/parallax1.jpg"></div>
-</div>
-
 <div class="section container">
     <div class="row">
         <div class="col s12 m9 l8 offset-l2">

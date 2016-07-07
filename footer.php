@@ -1,9 +1,9 @@
-<footer class="page-footer blue">
+<footer class="page-footer deep-orange">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <h5 class="white-text">About Server Space</h5>
-                <p class="grey-text text-lighten-4">It has always been our mission to make awesome stuff to help people. Let us help you find food and other stuff.</p>
+                <h5 class="white-text">About Give Back</h5>
+                <p class="grey-text text-lighten-4">We were inspired by math and science at a young age and believe every child should have this same opportunity.</p>
             </div>
             <div class="col l4 offset-l2 s12">
 
