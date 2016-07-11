@@ -6,25 +6,19 @@
 
 <title>Volunteer Profile - Give Back</title>
 
-<!-- CSS  -->
-<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-<link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700,500' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Oswald:700,300,400' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700,300' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="js/materialize.js"></script>
-<script src="js/init.js"></script>
-<link href="css/custom.css" rel="stylesheet">
-<body>
-<?php
-//error_reporting(E_ALL);
-//ini_set('display_errors', 'On');
-//ini_set('html_errors', 'On');
-include 'header.php'; ?>
+<?php include 'includes.php'; ?>
 
-<div class="section container">
+<body>
+<header>
+<?php
+    //error_reporting(E_ALL);
+    //ini_set('display_errors', 'On');
+    //ini_set('html_errors', 'On');
+    include 'header.php'; ?>
+</header>
+
+<main>
+    <div class="section container">
     <div class="row">
         <div class="col s12">
             <div class="row">
@@ -50,19 +44,20 @@ include 'header.php'; ?>
                     <div class="profile-ideas">
                         Ian's Workshop Ideas
                         <div class="row object-card card">
-                            <div class="col s7">
-                                <span class="object-title">Arduino Workshop&nbsp;<span class="object-details">Rolla, MO &middot; 7/6/2016</span></span>
+                            <div class="topcorner deep-orange lighten-4 grey-text">July 7, 2016</div>
+                            <div class="col s12">
+                                <span class="object-title">Arduino Workshop&nbsp;<span class="object-details">Jackson, MO</span></span>
                                 <span class="object-author">Ian Roberts</span>
                             </div>
-                            <div class="col s5 object-tags right-align">
-                                <div class="chip">Programming</div>
-                                <div class="chip">Science</div>
-                                <div class="chip">Electronics</div>
-                            </div>
                             <div class="col s12 object-description">In this workshop, I'd like to teach students how to play with the Arduino. It's an affordable hobbyist's dream. It's great for learning and having fun with electronics!</div>
-                            <div class="col s12 object-button">
-                                <a class="waves-effect btn-flat white-text deep-orange darken-3" href="#" target="_blank"><i class="material-icons left">exit_to_app</i>Full Details</a>
-                                <a class="waves-effect btn-flat white-text deep-orange darken-3" href="#" target="_blank"><i class="material-icons left">email</i>Contact Ian</a>
+                            <div class="col s8 valign-wrapper object-tags">
+                                <div class="chip"><i class="material-icons">code</i>Programming</div>
+                                <div class="chip"><i class="material-icons">public</i>Science</div>
+                                <div class="chip"><i class="material-icons">memory</i>Electronics</div>
+                            </div>
+                            <div class="col s4 object-button right-align">
+                                <a class="waves-effect btn-flat white-text deep-orange darken-2" href="workshop.php" target=""><i class="material-icons left">exit_to_app</i>Full Details</a>
+                                <a class="waves-effect btn-flat white-text deep-orange darken-2 hide" href="#" target="_blank"><i class="material-icons left">email</i>Contact Ian</a>
                             </div>
                         </div>
                     </div>
@@ -87,6 +82,7 @@ include 'header.php'; ?>
         </div>
     </div>
 </div>
+</main>
 
 <?php include 'footer.php'; ?>
 

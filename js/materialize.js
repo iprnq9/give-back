@@ -3751,7 +3751,7 @@ $(document).ready(function(){
         easing: 'easeOutSine'
       });
     $(element).velocity({opacity: 1}, {
-          duration: 1300,
+          duration: 600,
           queue: false,
           easing: 'swing',
           step: function(now, fx) {

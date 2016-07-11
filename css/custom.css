@@ -3,6 +3,10 @@
     src: url(../fonts/scoreboard.ttf);
 }
 
+* {
+    transition: all 0.5s ease;
+}
+
 @media only screen and (min-width: 992px) {
     .nav-wrapper {
         margin-right: 17%;
@@ -11,7 +15,7 @@
 }
 
 @media only screen and (max-width: 992px) {
-    .profile-name, .profile-about, .profile-skills {
+    .profile-name, .profile-about, .profile-skills, .profile-grade-level, .profile-district, .profile-location, .profile-details {
         text-align: center;
     }
 }
@@ -24,6 +28,11 @@
     font-size: 24pt;
     font-family: "Roboto Slab";
     display: block;
+}
+
+.chip {
+    margin-right: 3px;
+    margin-bottom: 5px;
 }
 
 .profile-about {
@@ -50,10 +59,14 @@
     display: block;
 }
 
-.profile-history, .profile-ideas {
+.profile-history, .profile-ideas, .about {
     font-size: 32pt;
     font-family: Roboto Slab, sans-serif;
     padding: 10px;
+}
+
+.object-card {
+    margin-bottom: 30px;
 }
 
 .object-title {
@@ -76,7 +89,7 @@
 }
 
 .object-hr {
-    width: 30%;
+    width: 98%;
     border: solid black 1px;
 }
 
@@ -87,14 +100,102 @@
 
 .object-button {
     font-size: 12pt;
-    margin-bottom: 15px;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .object-tags {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
+.btn-flat {
+    margin-top: 0px;
 }
 
 .col {
     padding: 15px;
+}
+
+.workshop-overview ul {
+    line-height: 28px;
+    align: middle;
+}
+
+.workshop-title {
+    display: block;
+    font-size: 24pt;
+    font-family: Roboto Slab;
+}
+
+.workshop-author {
+    font-size: 12pt;
+    font-family: "Roboto";
+    color: grey;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.topcorner {
+    position:absolute;
+    top:0;
+    right:0;
+    padding: 10px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-left-radius: 5px;
+    font-size: 11pt;
+}
+
+.categories-ul li, .grade-level-ul li {
+    line-height: 40px;
+}
+
+.bottom-border {
+    border-bottom: solid darkgray 1px;
+}
+
+.search-field {
+    min-height: 40px;
+}
+
+.document-download {
+    list-style-type: square;
+}
+
+.document-download li {
+    margin-left: 5px;
+}
+
+.workshop-overview img {
+
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.float-right {
+    float: right;
+}
+
+.about-description {
+    padding: 15px;
+    font-size: 12pt;
+    font-family: Roboto;
+}
+
+.workshop-overview {
+    font-size: 12pt;
+    font-family: Roboto;
+}
+
+.margin-bottom {
+    margin-bottom: 15px;
 }
