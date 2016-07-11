@@ -8,6 +8,7 @@ class userObj{
     protected $user_id;
     protected $first_name;
     protected $last_name;
+    protected $full_name;
     protected $location;
     protected $description;
     protected $profile_picture;
@@ -49,6 +50,10 @@ class userObj{
             $this->last_name = $val;
         else
             $this->last_name = "Miner";
+    }
+
+    public function setFullName($first, $last){
+        $this->full_name = $first . " " . $last;
     }
 
     public function setLocation($val){
@@ -98,6 +103,10 @@ class userObj{
 
     public function getLastName(){
         return $this->last_name;
+    }
+
+    public function getFullName(){
+        return $this->full_name;
     }
 
     public function getLocation(){

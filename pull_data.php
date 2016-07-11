@@ -1,7 +1,10 @@
 <?php
 
 include 'dbconnect.php';
-//include 'user_obj.php'; //uncomment for testing
+
+if (!class_exists('userObj')) {
+    include 'user_obj.php';
+}
 
 $userObj = new userObj;
 
@@ -28,6 +31,10 @@ $res = $db->query("SELECT $col FROM users WHERE username = '".$login_session."'"
 $val = $res->fetch_assoc();
 $val = $val[$col];
 $userObj->setLastName($val);
+
+$first = $userObj->getFirstName();
+$last  = $userObj->getLastName();
+$userObj->setFullName($first, $last);
 
 $col = "location";
 $res = $db->query("SELECT $col FROM users WHERE username = '".$login_session."'");
@@ -80,8 +87,8 @@ $user_about = $userObj->getAbout();
 $user_email = $userObj->getEmail();
 $user_dob = $userObj->getDOB();
 $user_age = $userObj->getAge();
-
-
+$profile_picture = $userObj->getProfilePicture();
+$user_description = $userObj->getDescription();
 
 //echo $userObj->getFirstName();
 //echo "<br>";

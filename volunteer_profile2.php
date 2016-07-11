@@ -23,13 +23,13 @@ $result = mysqli_query($db,$sql);
 
 include 'pull_data.php';
 
-$first_name = $userObj->getFirstName();
-$last_name  = $userObj->getLastName();
-$user_id = $userObj->getUserId();
-$username = $userObj->getUsername();
-$user_location = $userObj->getLocation();
-$user_description = $userObj->getDescription();
-$profile_picture = $userObj->getProfilePicture();
+//$first_name = $userObj->getFirstName();
+//$last_name  = $userObj->getLastName();
+//$user_id = $userObj->getUserId();
+//$username = $userObj->getUsername();
+//$user_location = $userObj->getLocation();
+//$user_description = $userObj->getDescription();
+//$profile_picture = $userObj->getProfilePicture();
 
 ?>
 
@@ -91,21 +91,6 @@ $profile_picture = $userObj->getProfilePicture();
                                     <div class="chip"><i class="material-icons">code</i>Programming</div>
                                     <div class="chip"><i class="material-icons">public</i>Science</div>
                                     <div class="chip"><i class="material-icons">memory</i>Electronics</div>
-                                </div>
-                                <div class="col s4 object-button right-align">
-                                    <a class="waves-effect btn-flat white-text deep-orange darken-2" href="workshop.php" target=""><i class="material-icons left">exit_to_app</i>Full Details</a>
-                                    <a class="waves-effect btn-flat white-text deep-orange darken-2 hide" href="#" target="_blank"><i class="material-icons left">email</i>Contact Ian</a>
-                                </div>
-                            </div>
-                            <div class="row object-card card">
-                                <div class="topcorner deep-orange lighten-4 grey-text">July 4, 2016</div>
-                                <div class="col s12">
-                                    <span class="object-title">Science Workshop&nbsp;<span class="object-details">Jackson, MO</span></span>
-                                    <span class="object-author">Ian Roberts</span>
-                                </div>
-                                <div class="col s12 object-description">Science experiments to help inspire kids to learn!</div>
-                                <div class="col s8 valign-wrapper object-tags">
-                                    <div class="chip"><i class="material-icons">public</i>Science</div>
                                 </div>
                                 <div class="col s4 object-button right-align">
                                     <a class="waves-effect btn-flat white-text deep-orange darken-2" href="workshop.php" target=""><i class="material-icons left">exit_to_app</i>Full Details</a>

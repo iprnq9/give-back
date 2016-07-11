@@ -6,7 +6,29 @@
 
 <title>Arduino Workshop Full Details - Give Back</title>
 
-<?php include 'includes.php'; ?>
+<?php
+
+$workshop_id = htmlspecialchars($_GET["workshop_id"]);
+
+include 'workshop_obj.php';
+
+include 'dbconnect.php';
+
+if ($db->connect_errno) {
+    $connection_error = "Failed to connect to MySQL: (" . $db->connect_errno . ") " . $db->connect_error;
+}
+
+include('session.php');
+
+$sql = "SELECT * FROM workshops WHERE id = $workshop_id";
+$result = mysqli_query($db,$sql);
+
+include 'pull_data_workshop.php';
+include 'pull_single_user.php';
+
+include 'includes.php';
+
+?>
 
 <body>
 
@@ -24,20 +46,11 @@
             <div class="col s12">
                 <div class="row">
                     <div class="col s12 l8 workshop-full-details card">
-                        <span class="workshop-title">Arduino Workshop</span>
-                        <span class="workshop-author">Ian Roberts</span>
-                        <span class="workshop-posted-date topcorner grey-text deep-orange lighten-4">July 6, 2016</span>
+                        <span class="workshop-title"><?php echo $title; ?></span>
+                        <span class="workshop-author"><?php echo pullUser($author_id)->getFullName(); ?></span>
+                        <span class="workshop-posted-date topcorner grey-text deep-orange lighten-4"><?php echo $publish_date; ?></span>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis                           aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis                           aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis                           aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis                           aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                            <?php echo $full_description; ?>
                         </p>
                         <hr class="object-hr"/>
                         <h5>Downloads</h5>
@@ -63,10 +76,10 @@
                                 </div>
                                 <div class="col s6 push-s3 l7 center-align">
                                     <h5>About the Author</h5>
-                                    <h6>Ian Roberts</h6>
+                                    <h6><?php echo pullUser($author_id)->getFullName(); ?></h6>
                                 </div>
                             </div>
-                            <p>I'm a student and love technology. I enjoy giving back and finding new ways to help people!</p>
+                            <p><?php echo pullUser($author_id)->getDescription(); ?></p>
                             <div class="valign-wrapper object-tags">
                                 <div class="chip"><i class="material-icons">code</i>Programming</div>
                                 <div class="chip"><i class="material-icons">public</i>Science</div>
