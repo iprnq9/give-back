@@ -70,7 +70,7 @@ include 'pull_data.php';
                 <div class="row">
                     <div class="col s12 l8 push-l2">
                         <ul class="tabs">
-                            <li class="tab col s4"><a href="#workshop-ideas" onclick="Materialize.fadeInImage('#workshop-ideas')">Ideas (2)</a></li>
+                            <li class="tab col s4"><a href="#workshop-ideas" onclick="Materialize.fadeInImage('#workshop-ideas')">Ideas (1)</a></li>
                             <li class="tab col s4"><a href="#workshop-history" onclick="Materialize.fadeInImage('#workshop-history')">Completed (1)</a></li>
                             <li class="tab col s4"><a href="#about" onclick="Materialize.fadeInImage('#about')">About</a></li>
                         </ul>
@@ -103,7 +103,7 @@ include 'pull_data.php';
                 <div class="row" id="workshop-history">
                     <div class="col s12 l8 push-l2">
                         <div class="profile-ideas">
-                            Ian's Workshop History
+                            Ian's Completed Workshop
                             <div class="row object-card card">
                                 <div class="topcorner deep-orange lighten-4 grey-text">March 7, 2016</div>
                                 <div class="col s12">
