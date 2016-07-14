@@ -38,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 <meta name="theme-color" content="#2196F3" />
 
-<title>Login - Give Back</title>
+<title>Sign In - Give Back</title>
 
 <?php include 'includes.php'; ?>
 
