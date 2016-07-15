@@ -6,11 +6,10 @@
                 <a href="index.php" class="brand-logo"><i class="material-icons left">loop</i>Give Back</a>
             </ul>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="index.php"><i class="material-icons circle left">home</i>Home</a></li>
-                <li><a href="volunteer_profile2.php"><i class="material-icons circle left">account_circle</i>Volunteer Profile</a></li>
+                <li><a href="volunteer.php"><i class="material-icons circle left">account_circle</i>My Profile</a></li>
                 <li><a href="institution_profile.php"><i class="material-icons circle left">location_city</i>Institution Profile</a></li>
                 <li><a href="search.php"><i class="material-icons circle left">search</i>Search</a></li>
-                <li>
+                <li class="hide">
                     <?php if(isset($_SESSION['username'])): ?>
                         <a href="logout.php">
                             <i class="material-icons left">close</i>
@@ -27,7 +26,7 @@
             </ul>
             <ul class="side-nav" id="mobile-demo">
                 <li><a href="index.php"><i class="material-icons circle left">home</i>Home</a></li>
-                <li><a href="volunteer_profile2.php">Volunteer Profile</a></li>
+                <li><a href="volunteer.php">My Profile</a></li>
                 <li><a href="institution_profile.php">Institution Profile</a></li>
                 <li><a href="search.php">Search</a></li>
                 <li>

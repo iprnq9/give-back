@@ -78,6 +78,14 @@ $birthdate = new DateTime($userObj->getDOB());
 $interval = $today->diff($birthdate);
 $userObj->setAge($interval->format('%y'));
 
+$res = $db->query("SELECT id FROM workshops WHERE author_id = '".$login_session."'");
+$workshopIDs = array();
+while($row = mysqli_fetch_array($res, MYSQLI_NUM))
+{
+    $workshopIDs[] = $row;
+}
+$userObj->setWorkshop($i, $workshopIDs[$i]);
+
 $first_name = $userObj->getFirstName();
 $last_name  = $userObj->getLastName();
 $user_id = $userObj->getUserId();

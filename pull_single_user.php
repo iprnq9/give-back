@@ -1,11 +1,13 @@
 <?php
 
-if (!class_exists('userObj')) {
-    include 'user_obj.php';
-}
+
 
 //fetches userObj from user_id
 function pullUser($id){
+    if (!class_exists('userObj')) {
+        include 'user_obj.php';
+    }
+
     include 'dbconnect.php';
 
     $userObj = new userObj;
@@ -68,6 +70,18 @@ function pullUser($id){
     $val = $val[$col];
     $userObj->setEmail($val);
 
+    $col = "phone";
+    $res = $db->query("SELECT $col FROM users WHERE user_id = '".$id."'");
+    $val = $res->fetch_assoc();
+    $val = $val[$col];
+    $userObj->setPhone($val);
+
+    $col = "linkedin";
+    $res = $db->query("SELECT $col FROM users WHERE user_id = '".$id."'");
+    $val = $res->fetch_assoc();
+    $val = $val[$col];
+    $userObj->setLinkedIn($val);
+
     $col = "dob";
     $res = $db->query("SELECT $col FROM users WHERE user_id = '".$id."'");
     $val = $res->fetch_assoc();
@@ -79,6 +93,18 @@ function pullUser($id){
     $birthdate = new DateTime($userObj->getDOB());
     $interval = $today->diff($birthdate);
     $userObj->setAge($interval->format('%y'));
+
+    $res = $db->query("SELECT id FROM workshops WHERE author_id = '".$id."'");
+    $workshopIDs = array();
+    $count = 0;
+    while($row = mysqli_fetch_array($res))
+    {
+        $workshopIDs[$count] = $row["id"];
+        $count++;
+    }
+
+    for($i=0; $i < count($workshopIDs); $i++)
+        $userObj->setWorkshop($i, $workshopIDs[$i]);
 
     return $userObj;
 

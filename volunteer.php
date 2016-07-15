@@ -4,14 +4,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 <meta name="theme-color" content="#2196F3" />
 
-<title>Volunteer Profile - Give Back</title>
+<title>Volunteer - Give Back</title>
 
 <?php
 
 include 'user_obj.php';
 include 'workshop_obj.php';
 
+
 include 'dbconnect.php';
+
+
 
 if ($db->connect_errno) {
     $connection_error = "Failed to connect to MySQL: (" . $db->connect_errno . ") " . $db->connect_error;
@@ -22,10 +25,11 @@ include('session.php');
 //$sql = "SELECT user_id FROM users WHERE user_id = $login_session";
 //$result = mysqli_query($db,$sql);
 
-include 'pull_data.php';
+//include 'pull_data.php';
 include 'pull_single_user.php';
-include 'pull_data_workshop.php';
+//include 'pull_data_workshop.php';
 include 'pull_single_workshop.php';
+include 'pull_tags.php';
 
 $profile_id = htmlspecialchars($_GET["profile"]);
 if(!$profile_id)
@@ -65,7 +69,7 @@ $userObj = pullUser($profile_id);
 
 ?>
 
-<?php include 'includes.php'; include 'pull_tags.php';?>
+<?php include 'includes.php'; ?>
 
 <body>
 
@@ -124,7 +128,7 @@ $userObj = pullUser($profile_id);
                                     echo "                                <div class=\"col s12 object-description\">".$workshopObj->getShortDescription()."</div>\n";
                                     echo "                                <div class=\"col s8 valign-wrapper object-tags\">\n";
                                     for($j=0; $j<$workshopObj->getTagCount();$j++){
-                                        echo "                                    <div class=\"chip\"><i class=\"material-icons\">code</i>".$tagsArray($workshopObj->getTag($j))."</div>\n";
+                                        echo "                                    <div class=\"chip\">".$tagArray[$workshopObj->getTag($j)]."</div>\n";
                                     }
                                     echo "                                </div>\n";
                                     echo "                                <div class=\"col s4 object-button right-align\">\n";

@@ -6,7 +6,13 @@
 
 <title>Search - Give Back</title>
 
-<?php include 'includes.php'; ?>
+<?php
+
+include 'includes.php';
+
+include('session.php');
+
+?>
 
 <body>
 
@@ -37,7 +43,7 @@
                         <div class="col s12 l2 push-l1">
                             <p><i class="material-icons left">school</i>Topic(s):</p>
                         </div>
-                        <div class="col s12 l6 push-l1 search-field bottom-border">
+                        <div class="col s12 l6 push-l1 input-field search-field bottom-border">
                             <div class="chip">Any Age</div>
                             <div class="chip"><i class="material-icons">palette</i>Art</div>
                             <div class="chip"><i class="material-icons">palette</i>Art</div>

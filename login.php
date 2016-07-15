@@ -4,7 +4,7 @@ session_start();
 
 $target = htmlspecialchars($_GET["target"]);
 if(!$target)
-    $target = "index.php";
+    $target = "volunteer.php";
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from form

@@ -8,10 +8,22 @@
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Quick Links</h5>
                 <ul>
-                    <li><a class="grey-text text-lighten-3" href="team.php">Our Team</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+
+                    <li>
+                        <?php if(isset($_SESSION['username'])): ?>
+                            <a href="logout.php" class="grey-text text-lighten-3">
+                                Sign Out
+                            </a>
+                        <?php else: ?>
+                            <a href="login.php" class="grey-text text-lighten-3">
+                                Sign In
+                            </a>
+                        <?php endif; ?>
+
+                    </li>
                     <li><a class="grey-text text-lighten-3" href="#!">Legal Stuff</a></li>
+                    <li><a class="grey-text text-lighten-3" href="example_workshops.php">Example Workshops</a></li>
+                    <li><a class="grey-text text-lighten-3" href="team.php">Our Team</a></li>
                 </ul>
             </div>
         </div>

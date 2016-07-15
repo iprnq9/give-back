@@ -69,7 +69,6 @@ $publish_date = $workshopObj->getPublishDate();
 $age = $workshopObj->getAge();
 
 
-
 //echo $userObj->getFirstName();
 //echo "<br>";
 //echo $userObj->getLastName();

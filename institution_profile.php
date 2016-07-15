@@ -6,7 +6,13 @@
 
 <title>Institution Profile - Give Back</title>
 
-<?php include 'includes.php'; ?>
+<?php
+
+include('session.php');
+
+include 'includes.php';
+
+?>
 
 <body>
 

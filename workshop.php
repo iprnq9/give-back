@@ -10,6 +10,9 @@
 
 $workshop_id = htmlspecialchars($_GET["workshop_id"]);
 
+if(!$workshop_id)
+    $workshop_id = 1;
+
 include 'workshop_obj.php';
 
 include 'dbconnect.php';
@@ -23,8 +26,13 @@ include('session.php');
 $sql = "SELECT * FROM workshops WHERE id = $workshop_id";
 $result = mysqli_query($db,$sql);
 
-include 'pull_data_workshop.php';
+include 'pull_single_workshop.php';
 include 'pull_single_user.php';
+
+$workshopObj = pullWorkshop($workshop_id);
+$author_id = $workshopObj->getAuthorId();
+$userObj = pullUser($author_id);
+
 
 include 'includes.php';
 
@@ -46,11 +54,11 @@ include 'includes.php';
             <div class="col s12">
                 <div class="row">
                     <div class="col s12 l8 workshop-full-details card">
-                        <span class="workshop-title"><?php echo $title; ?></span>
+                        <span class="workshop-title"><?php echo $workshopObj->getTitle(); ?></span>
                         <span class="workshop-author"><?php echo pullUser($author_id)->getFullName(); ?></span>
-                        <span class="workshop-posted-date topcorner grey-text deep-orange lighten-4"><?php echo $publish_date; ?></span>
+                        <span class="workshop-posted-date topcorner grey-text deep-orange lighten-4"><?php echo $workshopObj->getPublishDate(); ?></span>
                         <p>
-                            <?php echo $full_description; ?>
+                            <?php echo $workshopObj->getFullDescription(); ?>
                         </p>
                         <hr class="object-hr"/>
                         <h5>Downloads</h5>
@@ -68,15 +76,16 @@ include 'includes.php';
                             </ul>
                         </div>
                     </div>
+                    <?php if($userObj->getUserId() !== $login_session): ?>
                     <div class="col s12 l4 workshop-quick-facts">
                         <div class="card-panel black-text white workshop-overview">
                             <div class="row">
                                 <div class="col s4 offset-s4 l3 center-align">
-                                    <img src="images/profile.jpg" class="responsive-img circle">
+                                    <img src="images/<?php echo $userObj->getProfilePicture();?>" class="responsive-img circle">
                                 </div>
                                 <div class="col s6 push-s3 l7 center-align">
                                     <h5>About the Author</h5>
-                                    <h6><?php echo pullUser($author_id)->getFullName(); ?></h6>
+                                    <h6><?php echo $userObj->getFullName(); ?></h6>
                                 </div>
                             </div>
                             <p><?php echo pullUser($author_id)->getDescription(); ?></p>
@@ -87,17 +96,19 @@ include 'includes.php';
                             </div>
                         </div>
                     </div>
+                    <?php endif; ?>
+                    <?php if($userObj->getUserId() == $login_session): ?>
                     <div class="col s12 l4 workshop-quick-facts">
                         <div class="card-panel black-text white workshop-overview">
-                            <h5>Interested Institutions:</h5>
+                            <h5>Interested in this project:</h5>
                             <ul>
                                 <li><a href="institution_profile.php">West Lane Elementary</a><span class="float-right">07/16/2016</span></li>
                                 <li><a href="institution_profile.php">Jackson Middle School</a><span class="float-right">07/17/2016</span></li>
                                 <li><a href="institution_profile.php">John Smith Elementary</a><span class="float-right">07/18/2016</span></li>
                             </ul>
-                            <h6>This will only show if workshop author is logged in.</h6>
                         </div>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

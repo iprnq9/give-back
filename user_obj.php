@@ -3,7 +3,8 @@
 //ini_set('display_errors', 'On');
 //ini_set('html_errors', 'On');
 
-class userObj{
+class userObj
+{
     protected $username;
     protected $user_id;
     protected $first_name;
@@ -14,77 +15,108 @@ class userObj{
     protected $profile_picture;
     protected $about;
     protected $email;
+    protected $phone;
+    protected $linkedin;
     protected $dob;
     protected $age;
+    protected $workshops = array();
 
     /* construtor */
-    public function __construct(){
+    public function __construct()
+    {
         //???
     }
 
 
     /* SET functions*/
-    public function setUsername($val){
-        if($val)
+    public function setUsername($val)
+    {
+        if ($val)
             $this->username = $val;
         else
             $this->username = "joeMnr";
     }
 
-    public function setUserId($val){
-        if($val)
+    public function setUserId($val)
+    {
+        if ($val)
             $this->user_id = $val;
         else
             $this->user_id = "2003";
     }
 
-    public function setFirstName($val){
-        if($val)
+    public function setFirstName($val)
+    {
+        if ($val)
             $this->first_name = $val;
         else
             $this->first_name = "Joe";
     }
 
-    public function setLastName($val){
-        if($val)
+    public function setLastName($val)
+    {
+        if ($val)
             $this->last_name = $val;
         else
             $this->last_name = "Miner";
     }
 
-    public function setFullName($first, $last){
+    public function setFullName($first, $last)
+    {
         $this->full_name = $first . " " . $last;
     }
 
-    public function setLocation($val){
-        if($val)
+    public function setLocation($val)
+    {
+        if ($val)
             $this->location = $val;
         else
             $this->location = "65401";
     }
 
-    public function setDescription($val){
+    public function setDescription($val)
+    {
         $this->description = $val;
     }
 
-    public function setAbout($val){
+    public function setAbout($val)
+    {
         $this->about = $val;
     }
 
-    public function setProfilePicture($val){
+    public function setProfilePicture($val)
+    {
         $this->profile_picture = $val;
     }
 
-    public function setEmail($val){
+    public function setEmail($val)
+    {
         $this->email = $val;
     }
 
-    public function setDOB($val){
+    public function setPhone($val)
+    {
+        $this->phone = $val;
+    }
+
+    public function setLinkedIn($val)
+    {
+        $this->linkedin = $val;
+    }
+
+    public function setDOB($val)
+    {
         $this->dob = $val;
     }
 
-    public function setAge($val){
+    public function setAge($val)
+    {
         $this->age = $val;
+    }
+
+    public function setWorkshop($index, $val)
+    {
+        $this->workshops[$index] = $val;
     }
 
 
@@ -129,12 +161,28 @@ class userObj{
         return $this->email;
     }
 
+    public function getPhone(){
+        return $this->phone;
+    }
+
+    public function getLinkedIn(){
+        return $this->linkedin;
+    }
+
     public function getDOB(){
         return $this->dob;
     }
 
     public function getAge(){
         return $this->age;
+    }
+
+    public function getWorkshopCount(){
+        return count($this->workshops);
+    }
+
+    public function getWorkshopId($index){
+        return $this->workshops[$index];
     }
 }
 ?>

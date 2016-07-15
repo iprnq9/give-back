@@ -12,6 +12,8 @@ class workshopObj {
     protected $publish_date;
     protected $location;
     protected $age; //days old; used later for sorting
+    protected $tags = array();
+    protected $tag_count;
 
     /* construtor */
     public function __construct(){
@@ -70,6 +72,16 @@ class workshopObj {
         $this->age = $val;
     }
 
+    public function setTag($index, $val)
+    {
+        $this->tags[$index] = $val;
+    }
+
+
+    public function setTagCount(){
+        $this->tag_count = count($this->tags);
+    }
+
 
     /* GET functions*/
     public function getTitle(){
@@ -102,6 +114,14 @@ class workshopObj {
 
     public function getAge(){
         return $this->age;
+    }
+
+    public function getTag($index){
+        return $this->tags[$index];
+    }
+
+    public function getTagCount(){
+        return $this->tag_count;
     }
 }
 ?>

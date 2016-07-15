@@ -6,7 +6,27 @@
 
 <title>Our Team - Give Back</title>
 
-<?php include 'includes.php'; ?>
+<?php
+
+include 'user_obj.php';
+include 'workshop_obj.php';
+
+include 'dbconnect.php';
+
+if ($db->connect_errno) {
+    $connection_error = "Failed to connect to MySQL: (" . $db->connect_errno . ") " . $db->connect_error;
+}
+
+include('session.php');
+//
+//$sql = "SELECT user_id FROM users WHERE user_id = $login_session";
+//$result = mysqli_query($db,$sql);
+
+include 'pull_single_user.php';
+
+include 'includes.php';
+
+?>
 
 <body>
 
@@ -24,29 +44,29 @@
             <div class="col s12 l4 offset-l2">
                 <div class="card">
                     <div class="card-image">
-                        <img src="images/profile-2-3.jpg">
+                        <img src="images/<?php echo pullUser(1)->getProfilePicture(); ?>">
                     </div>
                     <div class="card-content">
-                        <span class="card-title">Ian Roberts, Founder</span>
-                        <p>I'm an electrical engineering student and love technology. I enjoy giving back and finding new ways to help people!</p>
+                        <span class="card-title"><?php echo pullUser(1)->getFullName(); ?>, Founder</span>
+                        <p><?php echo pullUser(1)->getDescription(); ?></p>
                     </div>
                     <div class="card-action">
-                        <a href="#">View LinkedIn</a>
+                        <a href="<?php echo pullUser(1)->getLinkedIn(); ?>" target="_blank">View LinkedIn</a>
                     </div>
                 </div>
             </div>
             <div class="col s12 l4">
                 <div class="card">
                     <div class="card-image">
-                        <img src="images/flo.jpg">
+                        <img src="images/<?php echo pullUser(2)->getProfilePicture(); ?>">
 
                     </div>
                     <div class="card-content">
-                        <span class="card-title">Hassan Kaous, Founder</span>
-                        <p>I'm a computer engineering student and love technology. I enjoy giving back and finding new ways to help people!</p>
+                        <span class="card-title"><?php echo pullUser(2)->getFullName(); ?>, Founder</span>
+                        <p><?php echo pullUser(2)->getDescription(); ?></p>
                     </div>
                     <div class="card-action">
-                        <a href="#">View LinkedIn</a>
+                        <a href="<?php echo pullUser(2)->getLinkedIn(); ?>" target="_blank">View LinkedIn</a>
                     </div>
                 </div>
             </div>
