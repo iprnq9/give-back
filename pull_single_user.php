@@ -106,6 +106,19 @@ function pullUser($id){
     for($i=0; $i < count($workshopIDs); $i++)
         $userObj->setWorkshop($i, $workshopIDs[$i]);
 
+    $res = $db->query("SELECT tag_id FROM user_tags WHERE user_id = '".$id."'");
+    $tagIDs = array();
+    $count = 0;
+    while($row = mysqli_fetch_array($res))
+    {
+        $tagIDs[$count] = $row["tag_id"];
+        $count++;
+    }
+
+    for($i=0; $i < count($tagIDs); $i++) {
+        $userObj->setTag($i, $tagIDs[$i]);
+    }
+
     return $userObj;
 
 //    $first_name = $userObj->getFirstName();

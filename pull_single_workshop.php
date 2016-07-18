@@ -101,4 +101,17 @@ function pullWorkshop($id){
     //echo "<br>";
 }
 
+function checkFavorite($user_id, $workshop_id){
+    include 'dbconnect.php';
+
+    $res = $db->query("SELECT * FROM favorites WHERE workshop_id = '".$workshop_id."' AND user_id = '".$user_id."'");
+
+    if($res->num_rows)
+        $favoriteBool = true;
+    else
+        $favoriteBool = false;
+
+    return $favoriteBool;
+}
+
 ?>

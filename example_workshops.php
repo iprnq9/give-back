@@ -12,6 +12,8 @@
 
 include 'user_obj.php';
 include 'workshop_obj.php';
+include 'printWorkshop.php';
+include 'findLocation.php';
 
 include 'dbconnect.php';
 
@@ -51,24 +53,7 @@ include 'pull_single_workshop.php';
                 <div id="how-it-works" class="section scrollspy">
                     <?php
                     for($i=1; $i<4; $i++){
-                        $workshopObj = pullWorkshop($i);
-                        echo "                             <div class=\"row object-card card\">\n";
-                        echo "                                <div class=\"topcorner deep-orange lighten-4 grey-text\">".$workshopObj->getPublishDate()."</div>\n";
-                        echo "                                <div class=\"col s12\">\n";
-                        echo "                                    <span class=\"object-title\">".$workshopObj->getTitle()."<span class=\"object-details\">&nbsp;".$workshopObj->getLocation()."</span></span>\n";
-                        echo "                                    <span class=\"object-author\">".pullUser($workshopObj->getAuthorId())->getFullName()."</span>\n";
-                        echo "                                </div>\n";
-                        echo "                                <div class=\"col s12 object-description\">".$workshopObj->getShortDescription()."</div>\n";
-                        echo "                                <div class=\"col s8 valign-wrapper object-tags\">\n";
-                        echo "                                    <div class=\"chip\"><i class=\"material-icons\">code</i>Programming</div>\n";
-                        echo "                                    <div class=\"chip\"><i class=\"material-icons\">public</i>Science</div>\n";
-                        echo "                                    <div class=\"chip\"><i class=\"material-icons\">memory</i>Electronics</div>\n";
-                        echo "                                </div>\n";
-                        echo "                                <div class=\"col s4 object-button right-align\">\n";
-                        echo "                                    <a class=\"waves-effect btn-flat white-text deep-orange darken-2\" href=\"workshop.php?workshop_id=".$workshopObj->getWorkshopId()."\" target=\"\"><i class=\"material-icons left\">exit_to_app</i>Full Details</a>\n";
-                        echo "                                    <a class=\"waves-effect btn-flat white-text deep-orange darken-2 hide\" href=\"".pullUser($workshopObj->getAuthorId())->getEmail()."\" target=\"_blank\"><i class=\"material-icons left\">email</i>Contact Ian</a>\n";
-                        echo "                                </div>\n";
-                        echo "                            </div>\n\n";
+                        printWorkshopCard($i);
                     }
                     ?>
                 </div>

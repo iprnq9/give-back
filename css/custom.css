@@ -199,3 +199,11 @@ main {
 .margin-bottom {
     margin-bottom: 15px;
 }
+
+.side-padding {
+    padding: 15px;
+}
+
+.italics {
+    font-style: italic;
+}

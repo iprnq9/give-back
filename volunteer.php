@@ -4,17 +4,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 <meta name="theme-color" content="#2196F3" />
 
-<title>Volunteer - Give Back</title>
-
 <?php
 
 include 'user_obj.php';
 include 'workshop_obj.php';
-
+include 'findLocation.php';
 
 include 'dbconnect.php';
-
-
 
 if ($db->connect_errno) {
     $connection_error = "Failed to connect to MySQL: (" . $db->connect_errno . ") " . $db->connect_error;
@@ -30,6 +26,7 @@ include 'pull_single_user.php';
 //include 'pull_data_workshop.php';
 include 'pull_single_workshop.php';
 include 'pull_tags.php';
+include 'printWorkshop.php';
 
 $profile_id = htmlspecialchars($_GET["profile"]);
 if(!$profile_id)
@@ -69,6 +66,8 @@ $userObj = pullUser($profile_id);
 
 ?>
 
+<title><?php echo $userObj->getFullName(); ?> - Give Back</title>
+
 <?php include 'includes.php'; ?>
 
 <body>
@@ -91,9 +90,11 @@ $userObj = pullUser($profile_id);
                         <span class="profile-name"><?php echo $userObj->getFullName(); ?></span>
                         <span class="profile-about"><?php echo $userObj->getDescription(); ?></span>
                         <span class="profile-skills">
-                            <div class="chip">Programming</div>
-                            <div class="chip">Science</div>
-                            <div class="chip">Electronics</div>
+                            <?php
+                            for($j=0; $j<$userObj->getTagCount();$j++){
+                                echo "<div class=\"chip\">".$tagArray[$userObj->getTag($j)]."</div>\n";
+                            }
+                            ?>
                         </span>
                     </div>
                     <div class="col s12 l4 profile-score-box hide">
@@ -107,7 +108,7 @@ $userObj = pullUser($profile_id);
                     <div class="col s12 l8 push-l2">
                         <ul class="tabs">
                             <li class="tab col s4"><a href="#workshop-ideas" onclick="Materialize.fadeInImage('#workshop-ideas')">Ideas (<?php echo $userObj->getWorkshopCount(); ?>)</a></li>
-                            <li class="tab col s4"><a href="#workshop-history" onclick="Materialize.fadeInImage('#workshop-history')">Completed (1)</a></li>
+                            <li class="tab col s4"><a href="#workshop-history" onclick="Materialize.fadeInImage('#workshop-history')">Favorites (1)</a></li>
                             <li class="tab col s4"><a href="#about" onclick="Materialize.fadeInImage('#about')">About</a></li>
                         </ul>
                     </div>
@@ -116,29 +117,22 @@ $userObj = pullUser($profile_id);
                     <div class="col s12 l8 push-l2">
                         <div class="profile-ideas">
                             <?php echo $userObj->getFirstName(); ?>'s Workshop Ideas
+                            <?php if($userObj->getUserId() == $login_session): ?>
+                            <span class="right object-button"><a class="waves-effect btn-flat white-text deep-orange darken-2" href="add_workshop.php"><i class="material-icons left">add</i>Add
+                                    Workshop</a></span>
+                            <?php endif; ?>
                             <?php
+                                if($userObj->getWorkshopCount() == 0 && $userObj->getUserId() == $login_session){
+                                    echo "<h5 class=\"center-align grey-text italics\">You don't have any workshops yet. Check out our Example Workshops to generate some ideas!</h5>";
+                                }
+                                if($userObj->getWorkshopCount() == 0 && $userObj->getUserId() != $login_session){
+                                    echo "<h5 class=\"center-align grey-text italics\">".$userObj->getFirstName()."&nbsp;doesn't have any workshops yet.</h5>";
+                                }
                                 for($i=0; $i<$userObj->getWorkshopCount(); $i++){
-                                    $workshopObj = pullWorkshop($userObj->getWorkshopId($i));
-                                    echo "                             <div class=\"row object-card card\">\n";
-                                    echo "                                <div class=\"topcorner deep-orange lighten-4 grey-text\">".$workshopObj->getPublishDate()."</div>\n";
-                                    echo "                                <div class=\"col s12\">\n";
-                                    echo "                                    <span class=\"object-title\">".$workshopObj->getTitle()."<span class=\"object-details\">&nbsp;".$workshopObj->getLocation()."</span></span>\n";
-                                    echo "                                    <span class=\"object-author\">".pullUser($workshopObj->getAuthorId())->getFullName()."</span>\n";
-                                    echo "                                </div>\n";
-                                    echo "                                <div class=\"col s12 object-description\">".$workshopObj->getShortDescription()."</div>\n";
-                                    echo "                                <div class=\"col s8 valign-wrapper object-tags\">\n";
-                                    for($j=0; $j<$workshopObj->getTagCount();$j++){
-                                        echo "                                    <div class=\"chip\">".$tagArray[$workshopObj->getTag($j)]."</div>\n";
-                                    }
-                                    echo "                                </div>\n";
-                                    echo "                                <div class=\"col s4 object-button right-align\">\n";
-                                    echo "                                    <a class=\"waves-effect btn-flat white-text deep-orange darken-2\" href=\"workshop.php?workshop_id=".$workshopObj->getWorkshopId()."\" target=\"\"><i class=\"material-icons left\">exit_to_app</i>Full Details</a>\n";
-                                    echo "                                    <a class=\"waves-effect btn-flat white-text deep-orange darken-2 hide\" href=\"".$userObj->getEmail()."\" target=\"_blank\"><i class=\"material-icons left\">email</i>Contact Ian</a>\n";
-                                    echo "                                </div>\n";
-                                    echo "                            </div>\n\n";
+                                    printWorkshopCard($userObj->getWorkshopId($i));
                                 }
                             ?>
-                            <?php if($userObj->getWorkshopCount() < 5): ?>
+                            <?php if($userObj->getWorkshopCount() < 5 && $userObj->getUserId() == $login_session): ?>
                             <div class="center-align object-button"><a class="waves-effect btn-flat white-text deep-orange darken-2" href="example_workshops.php"><i class="material-icons left">lightbulb_outline</i>Example
                                     Workshops</a></div>
                             <?php endif; ?>
@@ -148,7 +142,7 @@ $userObj = pullUser($profile_id);
                 <div class="row" id="workshop-history">
                     <div class="col s12 l8 push-l2">
                         <div class="profile-ideas">
-                            <?php echo $userObj->getFirstName(); ?>'s Completed Workshops
+                            <?php echo $userObj->getFirstName(); ?>'s Favorite Workshops
                             <div class="row object-card card">
                                 <div class="topcorner deep-orange lighten-4 grey-text">March 7, 2016</div>
                                 <div class="col s12">
@@ -183,11 +177,13 @@ $userObj = pullUser($profile_id);
                                 <ul>
                                     <li><i class="material-icons circle left">people</i>Age: <?php echo $userObj->getAge(); ?></li>
                                     <li><i class="material-icons circle left">mail</i><?php echo $userObj->getEmail(); ?></li>
+                                    <?php if($userObj->getPhone()): ?>
                                     <li><i class="material-icons circle left">phone</i><?php echo $userObj->getPhone(); ?></li>
+                                    <?php endif; ?>
                                     <?php if($userObj->getLinkedIn()): ?>
                                     <li><i class="material-icons circle left">share</i><a href="<?php echo $userObj->getLinkedIn();?>" target="_blank">LinkedIn</a></li>
                                     <?php endif; ?>
-                                    <li><i class="material-icons circle left">place</i>CITY, STATE</li>
+                                    <li><i class="material-icons circle left">place</i><?php echo locationByZip($userObj->getLocation(), "full"); ?></li>
                                 </ul>
                                 <iframe width="100%" height="auto" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=<?php echo $userObj->getLocation(); ?>&key=AIzaSyA3Hnx42SaJEa7CiIPbMaj9uYrglnbl5f0"
                                 allowfullscreen></iframe>

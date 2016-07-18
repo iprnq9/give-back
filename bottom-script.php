@@ -1,4 +1,12 @@
 <script>
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 120, // Creates a dropdown of 15 years to control year
+        min: new Date(1900,1,1),  // start date
+        max: new Date(),  // specific end date
+    });
+    $('input.timepicker').timepicker();
+
     $(window).scroll(function() {
         if ($(this).scrollTop() > 1){
             $('.profile-image').addClass("scroll");

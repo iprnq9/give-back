@@ -20,6 +20,7 @@ class userObj
     protected $dob;
     protected $age;
     protected $workshops = array();
+    protected $tags = array();
 
     /* construtor */
     public function __construct()
@@ -119,6 +120,11 @@ class userObj
         $this->workshops[$index] = $val;
     }
 
+    public function setTag($index, $val)
+    {
+        $this->tags[$index] = $val;
+    }
+
 
     /* GET functions*/
     public function getUsername(){
@@ -183,6 +189,14 @@ class userObj
 
     public function getWorkshopId($index){
         return $this->workshops[$index];
+    }
+
+    public function getTag($index){
+        return $this->tags[$index];
+    }
+
+    public function getTagCount(){
+        return count($this->tags);
     }
 }
 ?>

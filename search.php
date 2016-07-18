@@ -8,9 +8,32 @@
 
 <?php
 
+$tag = htmlspecialchars($_GET["tag"]);
+
+include 'user_obj.php';
+include 'workshop_obj.php';
+include 'pull_single_workshop.php';
+include 'pull_single_user.php';
+include 'pull_tags.php';
+include 'printWorkshop.php';
+include 'findLocation.php';
+
+include 'dbconnect.php';
+
+include 'pullSearch.php';
+
+if ($db->connect_errno) {
+    $connection_error = "Failed to connect to MySQL: (" . $db->connect_errno . ") " . $db->connect_error;
+}
+
 include 'includes.php';
 
 include('session.php');
+
+
+$workshopArray = array();
+$workshopArray = tagSearch($tag);
+
 
 ?>
 
@@ -36,8 +59,9 @@ include('session.php');
                     <li><div class="chip"><i class="material-icons">palette</i>Art</div></li>
                 </ul>
             </div>
-            <div class="col l8 center-align">
-                <h4>Search</h4>
+            <div class="col l8">
+                <h4 class="center-align">Search</h4>
+                <?php if($tag == NULL): ?>
                 <form class="col s12">
                     <div class="row search-field">
                         <div class="col s12 l2 push-l1">
@@ -79,6 +103,18 @@ include('session.php');
                         </button>
                     </p>
                 </form>
+                <?php endif; ?>
+                <?php if($tag): ?>
+                    <h5 class="center-align"><?php echo "'".$tag."' &rarr; ".count($workshopArray)." workshops"; ?></h5>
+                    <div class="col">
+                <?php
+                  for($i=count($workshopArray)-1; $i >= 0; $i--){
+                      printWorkshopCard($workshopArray[$i]);
+                  }
+                ?>
+                    </div>
+                <?php endif; ?>
+
             </div>
             <div class="col l2 card center-align">
                 <h5>Grade Level</h5>
