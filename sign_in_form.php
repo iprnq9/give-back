@@ -1,12 +1,12 @@
 <div class="row">
-    <form class="col s12 m8 push-m2 l6 push-l3 center-align" method="post">
+    <form name="sign_in" class="col s12 m8 push-m2 l6 push-l3 center-align" method="post">
         <h3>Sign In</h3>
         <h6 class="red-text"><?php echo $error; ?></h6>
         <div class="row">
             <div class="input-field col s12">
                 <i class="material-icons prefix">account_box</i>
-                <input id="username" name="username" type="text" class="">
-                <label for="username">Username</label>
+                <input id="username" name="username" type="text" class="active">
+                <label class="active" for="username">Username</label>
             </div>
             <div class="input-field col s12">
                 <i class="material-icons prefix">lock</i>
@@ -21,3 +21,9 @@
         </p>
     </form>
 </div>
+<script>
+    document.forms['sign_in'].elements['username'].focus();
+    $(document).ready(function() {
+        Materialize.updateTextFields();
+    });
+</script>

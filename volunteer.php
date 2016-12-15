@@ -108,7 +108,7 @@ $userObj = pullUser($profile_id);
                     <div class="col s12 l8 push-l2">
                         <ul class="tabs">
                             <li class="tab col s4"><a href="#workshop-ideas" onclick="Materialize.fadeInImage('#workshop-ideas')">Ideas (<?php echo $userObj->getWorkshopCount(); ?>)</a></li>
-                            <li class="tab col s4"><a href="#workshop-history" onclick="Materialize.fadeInImage('#workshop-history')">Favorites (1)</a></li>
+                            <li class="tab col s4"><a href="#workshop-history" onclick="Materialize.fadeInImage('#workshop-history')">Favorites (<?php echo $userObj->getFavoriteCount(); ?>)</a></li>
                             <li class="tab col s4"><a href="#about" onclick="Materialize.fadeInImage('#about')">About</a></li>
                         </ul>
                     </div>
@@ -118,8 +118,11 @@ $userObj = pullUser($profile_id);
                         <div class="profile-ideas">
                             <?php echo $userObj->getFirstName(); ?>'s Workshop Ideas
                             <?php if($userObj->getUserId() == $login_session): ?>
-                            <span class="right object-button"><a class="waves-effect btn-flat white-text deep-orange darken-2" href="add_workshop.php"><i class="material-icons left">add</i>Add
-                                    Workshop</a></span>
+                            <span class="right object-button">
+                                <a class="waves-effect btn-flat white-text deep-orange darken-2" href="add_workshop.php">
+                                    <i class="material-icons left">add</i>Add Workshop
+                                </a>
+                            </span>
                             <?php endif; ?>
                             <?php
                                 if($userObj->getWorkshopCount() == 0 && $userObj->getUserId() == $login_session){
@@ -143,23 +146,15 @@ $userObj = pullUser($profile_id);
                     <div class="col s12 l8 push-l2">
                         <div class="profile-ideas">
                             <?php echo $userObj->getFirstName(); ?>'s Favorite Workshops
-                            <div class="row object-card card">
-                                <div class="topcorner deep-orange lighten-4 grey-text">March 7, 2016</div>
-                                <div class="col s12">
-                                    <span class="object-title">Math Workshop&nbsp;<span class="object-details">Jackson, MO</span></span>
-                                    <span class="object-author">Ian Roberts</span>
-                                </div>
-                                <div class="col s12 object-description">In this workshop, I'd like to teach students how to play with the Arduino. It's an affordable hobbyist's dream. It's great for learning and having fun with electronics!</div>
-                                <div class="col s8 valign-wrapper object-tags">
-                                    <div class="chip"><i class="material-icons">code</i>Programming</div>
-                                    <div class="chip"><i class="material-icons">public</i>Science</div>
-                                    <div class="chip"><i class="material-icons">memory</i>Electronics</div>
-                                </div>
-                                <div class="col s4 object-button right-align">
-                                    <a class="waves-effect btn-flat white-text deep-orange darken-2" href="workshop.php" target=""><i class="material-icons left">exit_to_app</i>Full Details</a>
-                                    <a class="waves-effect btn-flat white-text deep-orange darken-2 hide" href="#" target="_blank"><i class="material-icons left">email</i>Contact Ian</a>
-                                </div>
-                            </div>
+                            <?php if($userObj->getUserId() == $login_session): ?>
+                                <span class="right object-button"><a class="waves-effect btn-flat white-text deep-orange darken-2" href="add_workshop.php"><i class="material-icons left">add</i>Add
+                                        Workshop</a></span>
+                            <?php endif; ?>
+                            <?php
+                            for($i=0; $i<$userObj->getFavoriteCount(); $i++){
+                                printWorkshopCard($userObj->getFavoriteID($i));
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>

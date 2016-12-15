@@ -99,6 +99,13 @@ else { ?>
         </p>
     </form>
 </div>
+<script>
+    $.getJSON('http://ipinfo.io', function(data){
+        var zip = data['postal'];
+        console.log(zip);
+        $("input[name='zip_code'").val(zip);
+    })
+</script>
 <?php
 } //end else
 ?>

@@ -119,6 +119,19 @@ function pullUser($id){
         $userObj->setTag($i, $tagIDs[$i]);
     }
 
+    $favoritesIDs = array();
+    $res = $db->query("SELECT workshop_id FROM favorites WHERE user_id = '".$id."'");
+    $count = 0;
+    while($row = mysqli_fetch_array($res))
+    {
+        $favoritesIDs[$count] = $row["workshop_id"];
+        $count++;
+    }
+
+    for($i=0; $i < count($favoritesIDs); $i++) {
+        $userObj->setFavorite($i, $favoritesIDs[$i]);
+    }
+
     return $userObj;
 
 //    $first_name = $userObj->getFirstName();

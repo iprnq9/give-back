@@ -21,6 +21,7 @@ class userObj
     protected $age;
     protected $workshops = array();
     protected $tags = array();
+    protected $favoritesIDs = array();
 
     /* construtor */
     public function __construct()
@@ -125,6 +126,9 @@ class userObj
         $this->tags[$index] = $val;
     }
 
+    public function setFavorite($index, $val){
+        $this->favoritesIDs[$index] = $val;
+    }
 
     /* GET functions*/
     public function getUsername(){
@@ -198,5 +202,14 @@ class userObj
     public function getTagCount(){
         return count($this->tags);
     }
+
+    public function getFavoriteCount(){
+        return count($this->favoritesIDs);
+    }
+
+    public function getFavoriteID($val){
+        return $this->favoritesIDs[$val];
+    }
+
 }
 ?>

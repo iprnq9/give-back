@@ -53,8 +53,8 @@ $workshopArray = tagSearch($tag);
             <div class="col s12 l2 card center-align">
                 <h5>Topics</h5>
                 <ul class="categories-ul">
-                    <li><div class="chip"><i class="material-icons">functions</i>Math</div></li>
-                    <li><div class="chip"><i class="material-icons">code</i>Programming</div></li>
+                    <li><div class="chip" name="math"><i class="material-icons">functions</i>Math</div></li>
+                    <li><div class="chip" name="programming"><i class="material-icons">code</i>Programming</div></li>
                     <li><div class="chip"><i class="material-icons">public</i>Science</div></li>
                     <li><div class="chip"><i class="material-icons">palette</i>Art</div></li>
                 </ul>
@@ -86,8 +86,8 @@ $workshopArray = tagSearch($tag);
                         </div>
                     </div>
                     <p class="center-align">
-                        <input type="checkbox" id="test6" />
-                        <label for="test6">Near Rolla, MO</label>
+                        <input type="checkbox" id="test6"/>
+                        <label for="test6"></label>
                     </p>
                     <p class="center-align">
                         <button class="btn waves-effect waves-light" type="submit" name="action">Who Can Help Me
@@ -231,3 +231,15 @@ $workshopArray = tagSearch($tag);
 
 </body>
 </html>
+
+<script>
+    $.getJSON('http://ipinfo.io', function(data){
+        var zip = data['postal'];
+        var city = data['city'];
+        var state = data['region'];
+        var city_state = city + ", " + state;
+        console.log(city_state);
+        $("label[for='test6']").text(city_state);
+        $("input[id='test6']").val(zip);
+    })
+</script>
